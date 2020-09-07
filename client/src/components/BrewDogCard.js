@@ -5,7 +5,6 @@ const API_URL = 'http://localhost:3001';
 
 
 const BrewDogCard = ({ beer }) => {
-const [inputVal, setInputVal] = useState(5);
 const [rating, setRating] = useState({});
 
 const getBeerRating = async () => {
@@ -17,21 +16,6 @@ useEffect(() => {
   getBeerRating();
 }, []);
 
-const handleSubmit = (e) => {
-  e.preventDefault();
-  fetch(`${API_URL}/ratings`, {
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify({stars: inputVal, beerId: beer.id})
-  })
-  .then(function(res){ console.log(res) })
-  .then((res) => getBeerRating())
-  .catch(function(res){ console.log(res) })
-
-}
 const beerLogo = beer.image_url && <img src={beer.image_url} alt="beer_image" style={{width: 2 + 'rem', marginRight: 'auto'}}/>;
   return (
     <div className="card" style={{width: 100 + '%'}}>
@@ -56,15 +40,11 @@ const beerLogo = beer.image_url && <img src={beer.image_url} alt="beer_image" st
         </div>
       </div>
       <div className="row">
-        <h4>Rating: <StarRating rating={rating.stars} message={rating.message}/> </h4>
-
-      </div>
-      <div className="row">
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="rating">Rate this beer</label>
-        <input onChange={(e) => setInputVal(e.target.value)} value={inputVal} name="rating" type="text"/>
-        <button type="submit">Submit</button>
-      </form>
+         <StarRating rating={rating.stars}
+                     message={rating.message}
+                     beerId={beer.id}
+                     getBeerRating={getBeerRating}
+                     />
       </div>
     </div>
   )

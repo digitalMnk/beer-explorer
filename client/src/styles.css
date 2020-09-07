@@ -79,3 +79,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.bi-star-fill:hover {
+  fill: gold;
+}
