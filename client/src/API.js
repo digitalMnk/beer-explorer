@@ -15,9 +15,26 @@ async function getBreweriesByBeer(id) {
   return res.json();
 };
 
+// async function getRandomBrewDog() {
+//   const res = await fetch(`${API_URL}/beer/random`);
+//   return res.json();
+//   await console.log(res.json());
+// };
+
+async function getRandomBrewDog() {
+  const res = await fetch(`${API_URL}/beer/random`);
+  return res.json();
+};
+
+async function getRating(id) {
+  const res = await fetch(`${API_URL}/find-rating/${id}`);
+  return res.json();
+}
 
 export {
   getRandomBeer,
   getBeerStyles,
-  getBreweriesByBeer
+  getBreweriesByBeer,
+  getRandomBrewDog,
+  getRating
 }

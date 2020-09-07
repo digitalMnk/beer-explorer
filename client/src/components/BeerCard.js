@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const BeerCard = ({ id,
                     styleId,
                     name,
@@ -11,12 +12,11 @@ const BeerCard = ({ id,
                    }) => {
 
 const listBreweries = breweries && breweries.map((brew) => (
-  <li key={brew.id} className="alert alert-warning">{brew.name}</li>
+  <span key={brew.id} className="alert alert-warning">{brew.name}</span>
 ))
 
-const showIbu = ibu && `ibu: ${ibu}`;
   return (
-    <div className="card " style={{width: 100 + '%'}}>
+    <div className="card" style={{width: 100 + '%'}}>
       <div className="row">
       <div className="card-body col-6">
         <h5 className="card-title">{name}</h5>
@@ -27,8 +27,8 @@ const showIbu = ibu && `ibu: ${ibu}`;
         <a href={'#' + styleId} onClick={toggleActiveStyle} className="card-link">{styleName}</a>
       </div>
       <ul className="list-group col-6">
-        <li className="list-group-item bg-info text-white shadow">{showIbu}</li>
-        <li className="list-group-item bg-info text-white shadow">abv: {abv}</li>
+        {ibu && <span className="list-group-item bg-info text-white shadow">{`IBU: ${ibu}`}</span>}
+        <span className="list-group-item bg-info text-white shadow">ABV: {abv}%</span>
       </ul>
       </div>
       <div className="row">

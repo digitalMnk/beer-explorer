@@ -2,4 +2,80 @@
   padding: 1rem;
   margin-top: 0.5rem;
   margin-bottom: 2rem;
+  transition: display 2s;
+}
+
+.list-group {
+  padding: 0 1rem;
+}
+/* div#root ul {
+  padding: 0;
+} */
+
+/* .beer-card {
+  width: 100%;
+  max-width: 700px;
+  padding: 0px 20px;
+  color: #0e0e0e;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.card-btn {
+  cursor: pointer;
+  font-size: 20px;
+  margin: 20px 0;
+  display: inline-flex;
+  user-select: none;
+}
+
+.card-btn::selected {
+  color: transparent;
+} */
+
+/* .BeerStyleCard {
+  max-height: 0;
+  transition: opacity 500ms, visibility 500ms, max-height 500ms;
+  visibility: hidden;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+} */
+
+/* .card_text {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  padding: 10px 0 30px 0;
+} */
+
+/* .active {
+  max-height: var(--height, 0.1);
+  visibility: visible;
+  opacity: 1;
+} */
+
+.card-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card .card-text.list-group-item-info {
+  border-radius: 0.25em;
+}
+
+.card .card-text.list-group-item-info {
+  padding-left: 1rem;
+}
+
+.right-sec .list-group {
+  margin-top: 2rem;
+}
+
+.right-sec {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
