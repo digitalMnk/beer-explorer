@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import StarRating from './StarRating';
 import { getRating } from '../API';
 const API_URL = 'http://localhost:3001';
 
@@ -15,7 +16,6 @@ const getBeerRating = async () => {
 useEffect(() => {
   getBeerRating();
 }, []);
-//getBeerRating();
 
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -56,7 +56,8 @@ const beerLogo = beer.image_url && <img src={beer.image_url} alt="beer_image" st
         </div>
       </div>
       <div className="row">
-        <h4>Rating: {rating.stars ? rating.stars : rating.message} </h4>
+        <h4>Rating: <StarRating rating={rating.stars} message={rating.message}/> </h4>
+
       </div>
       <div className="row">
       <form onSubmit={handleSubmit}>
