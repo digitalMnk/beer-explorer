@@ -6,7 +6,7 @@ const BeerCard = ({ id,
                     name,
                     abv = null,
                     ibu = null,
-                    styleName = null,
+                    styleName = 'null',
                     breweries = null,
                     toggleActiveStyle
                    }) => {

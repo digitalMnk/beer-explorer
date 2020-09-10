@@ -1,14 +1,13 @@
 const express = require('express');
+const app = express();
 const fetch = require('node-fetch');
 const cors = require('cors');
 require('dotenv').config();
 const mongoose = require('mongoose');
 const Ratings = require('../models/Ratings')
 
-const app = express();
-app.set('port', process.env.PORT || 3000);
-// app.use(express.static('public'));
 
+app.set('port', process.env.PORT || 3000);
 
 app.use(cors({
   origin: process.env.CORS_ORIGIN
@@ -18,8 +17,10 @@ app.use(express.urlencoded({ extended: true })); // Узнать что тут �
 app.use(require('morgan')('dev'));
 
 
-mongoose.connect(process.env.DB_URL, { useNewUrlParser: true,
-                                       useUnifiedTopology: true })
+mongoose.connect(process.env.DB_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log('mongoDB connected'))
   .catch((err) => console.error(err));
 
@@ -31,7 +32,7 @@ app.get('/', function (req, res) {
 
 app.get('/random-beer/', async (req, res) => {
   const data = await fetch(`${process.env.BEER_API_URL}/beer/random/?key=${process.env.BEER_API_KEY}`);
-  const json =await data.json();
+  const json = await data.json();
   res.send(json);
 });
 
@@ -47,27 +48,36 @@ app.get('/styles/', async (req, res) => {
   res.send(json);
 });
 
-app.post('/ratings/', (req, res) => {
+app.post('/ratings/', async (req, res) => {
+  const candidat = await Ratings.findOne({beerId: req.body.beerId});
+  console.log('candidat: ',candidat)
+  if(candidat) {
+    res.status(300).json({
+      message: 'already exists'
+    })
+  } else {
+    const entry = new Ratings(req.body);
 
-  const entry = new Ratings(req.body);
-  console.log(entry)
-  entry.save().then(() => console.log('saved'))
-              .catch(() => console.log('Error with saving to db'));
+    console.log(entry)
+    entry.save().then(() => console.log('saved'))
+      .catch(() => console.log('Error with saving to db'));
 
-  res.status(200).json({
-    message: 'posted'
-  });
-})
+    res.status(200).json({
+      message: 'saved to a database'
+    });
+
+  }
+    });
 
 app.get(`/find-rating/:id`, async (req, res) => {
-    const rating = await Ratings.findOne({beerId: req.params.id});
-    if(rating) {
-      res.send(rating);
-    } else {
-      res.send({
-        message: 'no rating yet'
-      })
-    }
+  const rating = await Ratings.findOne({ beerId: req.params.id });
+  if (rating) {
+    res.send(rating);
+  } else {
+    res.send({
+      message: 'no rating yet'
+    })
+  }
 });
 
 app.get('/style/:id', async (req, res) => {

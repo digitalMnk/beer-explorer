@@ -13,15 +13,21 @@ const StarRatingModal = ({ rating, beerId, getBeerRating }) => {
       method: "POST",
       body: JSON.stringify({stars: rating, beerId: beerId})
     })
-    .then(function(res){ console.log(res) })
-    .then((res) => getBeerRating())
-    .catch(function(res){ console.log(res) })
+    .then((res) => {
+      console.log(res);
+      console.log(res.body.message)
+     })
+    .then((res) => {
+      getBeerRating()
+      console.log('get beer rating')
+    })
+    .catch((res) => console.log(res))
 
   }
 
   return (
     <>
-    <div className="modal fade" id="StarRatingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal fade" id="StarRatingModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
@@ -34,8 +40,8 @@ const StarRatingModal = ({ rating, beerId, getBeerRating }) => {
             You wanna give this beer {rating} stars?
           </div>
           <div className="modal-footer">
-            <button onClick={() => console.log(rating)} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button onClick={onSaveRating} type="button" className="btn btn-primary" data-dismiss="modal">Save changes</button>
+            <button onClick={() => console.log(rating)} type="button" key="close-btn" className="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button onClick={onSaveRating} type="button" key="save-btn" className="btn btn-primary" data-dismiss="modal">Save changes</button>
           </div>
         </div>
       </div>

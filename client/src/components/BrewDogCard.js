@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import StarRating from './StarRating';
-import { getRating } from '../API';
-const API_URL = 'http://localhost:3001';
+import {getRating} from '../API';
 
+const BrewDogCard = ({ beer, getRandBrewDog }) => {
+  const [rating, setRating] = useState({});
 
-const BrewDogCard = ({ beer }) => {
-const [rating, setRating] = useState({});
+  const getBeerRating = async () => {
+    const data = await getRating(beer.id);
+    console.log('data: ',data)
+    setRating(data);
+  }
+  
 
-const getBeerRating = async () => {
-  const data = await getRating(beer.id);
-  console.log(data)
-  setRating(data);
-}
-useEffect(() => {
-  getBeerRating();
-}, []);
+  useEffect(() => {
+    getBeerRating()
+  }, [beer])
 
-const beerLogo = beer.image_url && <img src={beer.image_url} alt="beer_image" style={{width: 2 + 'rem', marginRight: 'auto'}}/>;
+  const beerLogo = beer.image_url && <img src={beer.image_url} alt="beer_image" style={{ width: 2 + 'rem', marginRight: 'auto' }} />;
   return (
-    <div className="card" style={{width: 100 + '%'}}>
+    <div className="card" style={{ width: 100 + '%' }}>
       <div className="row">
         <div className="card-body col-6">
           <h5 className="card-title">{beerLogo}{beer.name}</h5>
@@ -37,14 +37,15 @@ const beerLogo = beer.image_url && <img src={beer.image_url} alt="beer_image" st
             <span className="list-group-item list-group-item-info shadow">Food pairing:</span>
             {beer.food_pairing.map((item, i) => <span key={i} className="list-group-item list-group-item-warning shadow">{item}</span>)}
           </ul>
+          <button onClick={getRandBrewDog} className="mt-20% btn btn-primary">Another random beer!</button>
         </div>
       </div>
       <div className="row">
-         <StarRating rating={rating.stars}
-                     message={rating.message}
-                     beerId={beer.id}
-                     getBeerRating={getBeerRating}
-                     />
+        <StarRating rating={rating.stars}
+          message={rating.message}
+          beerId={beer.id}
+          getBeerRating={getBeerRating}
+        />
       </div>
     </div>
   )
