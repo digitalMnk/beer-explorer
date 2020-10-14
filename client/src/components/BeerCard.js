@@ -23,7 +23,7 @@ const listBreweries = breweries && breweries.map((brew) => (
         <h6 className="card-subtitle mb-2 text-muted">{styleName}</h6>
         <p className="card-text">{}</p>
 
-        <a href="#" className="card-link">{}</a>
+        {/* <a href="#" className="card-link">{}</a> */}
         <a href={'#' + styleId} onClick={toggleActiveStyle} className="card-link">{styleName}</a>
       </div>
       <ul className="list-group col-6">

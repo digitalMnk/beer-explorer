@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { getRandomBeer,
-         getBreweriesByBeer,
+        //  getBreweriesByBeer,
          getBeerStyles,
          getRandomBrewDog} from './API';
 import ListGroup from './components/ListGroup';
@@ -226,7 +226,7 @@ const App = () => {
       "updateDate": null
     }
   });
-  const [breweries, setBreweries] = useState([]);
+  // const [breweries, setBreweries] = useState([]);
   const [styles, setStyles] = useState([{
         "id": null,
         "categoryId": null,
@@ -271,7 +271,7 @@ const App = () => {
     }
 
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     getRandBrewDog();
     getRandBeer();
     getStyles();

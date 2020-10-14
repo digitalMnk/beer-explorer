@@ -25,8 +25,8 @@ const BrewDogCard = ({ beer, getRandBrewDog }) => {
           <h6 className="card-subtitle mb-2 text-muted">{beer.tagline}</h6>
           <p className="card-text list-group-item-info">First brewed in {beer.first_brewed}</p>
           <p className="card-text">{beer.description}</p>
-          <a href="#" className="card-link">Card link</a>
-          <a href="#" className="card-link">Another link</a>
+          {/* <a href="#" className="card-link">Card link</a> */}
+          {/* <a href="#" className="card-link">Another link</a> */}
         </div>
         <div className="col-6 right-sec">
           <ul className="list-group">

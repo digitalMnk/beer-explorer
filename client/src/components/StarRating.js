@@ -4,11 +4,10 @@ import StarRatingModal from './StarRatingModal';
 const StarRating = ({ rating = 0, message = null, beerId, getBeerRating }) => {
   const stars = Array(5).fill(0);
   const [inputVal, setInputVal] = useState(0);
-  let classes;
+  // let classes;
   const handleRatingClick = (e) => {
     setInputVal(e.target.dataset.value);
     console.log(e.target.dataset.value);
-
   }
 
   return (
